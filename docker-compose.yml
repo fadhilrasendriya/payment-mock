@@ -22,7 +22,3 @@ networks:
   payment_network:
     driver: bridge
 
-
-
-
-
