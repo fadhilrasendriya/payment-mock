@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -34,6 +35,13 @@ public class PaymentController {
         String orderId = body.get("orderid").toString();
         Payment payment = paymentService.verifyPayment(orderId);
         return new ResponseEntity<>(payment, HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "/isItWorking", produces = "application/json")
+    public ResponseEntity<Map<String, Object>> isItWorking() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("status", "working");
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
 }

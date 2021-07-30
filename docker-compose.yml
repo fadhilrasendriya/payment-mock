@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  payment-service:
+    container_name: payment_service
+    image: payment:0.0.2
+    ports:
+      - 5134:8080
+    depends_on:
+      - payment_db
+    networks:
+      - payment_network
+    environment:
+      - MONGO_HOST=payment_db
+      - MONGO_PORT=27017
+  payment_db:
+    container_name: payment_db
+    image: "mongo:5.0.1"
+    networks:
+      - payment_network
+
+networks:
+  payment_network:
+    driver: bridge
+
+
+
+
+
